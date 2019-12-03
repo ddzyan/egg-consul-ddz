@@ -2,25 +2,6 @@
 const util = require('util');
 const Consul = require('consul');
 
-function format(msg, app) {
-  let rest = '';
-  if (msg instanceof Error) {
-    rest = util.format(
-      'egg-consul-ddz %s: %s\nData:%j\nfunctionName:%s\n\n',
-      msg.name,
-      msg.stack,
-      msg.data,
-      msg.function
-    );
-  } else {
-    rest = util.format(
-      'egg-consul-ddz \n%s',
-      msg
-    );
-  }
-  app.logger.error(rest);
-}
-
 const DEFAULT_CONSUL_CONFIG = {
   promisify: true,
   secure: false,
@@ -72,7 +53,7 @@ module.exports = {
         error.function = 'initClient';
         error.data = consulConfig;
       }
-      format(error);
+      this.format(error);
     }
   },
 
@@ -88,7 +69,7 @@ module.exports = {
         error.function = 'registerService';
         error.data = consulConfig;
       }
-      format(error);
+      this.format(error);
     }
 
   },
@@ -108,7 +89,7 @@ module.exports = {
         error.function = 'deregisterService';
         error.data = consulConfig;
       }
-      format(error);
+      this.format(error);
     }
   },
 
@@ -148,7 +129,7 @@ module.exports = {
         error.function = 'checkService';
         error.data = serviceOption;
       }
-      format(error);
+      this.format(error);
     }
   },
 };

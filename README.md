@@ -11,6 +11,9 @@ egg-consul-ddz 插件，功能包括：
 2. 将 consul 相关方法转移到 application 中，在引用时无需再传入 app 对象
 3. 配置定时任务 schedule ，每隔 1m 分钟去 consul 获取，检查和更新健康服务信息 
 
+#### 1.0.2
+1. 解决 format 方法引用错误bug
+
 ## 使用
 需要在config.*.js 文件中配置以下参数：
 ```js
