@@ -14,20 +14,24 @@ egg-consul-ddz 插件，功能包括：
 ## 使用
 需要在config.*.js 文件中配置以下参数：
 ```js
-{
-	consulConfig: {
+ consulConfig: {
+      findTime: '1m', // 发现服务的间隔时间
       server: {
-        host: '127.0.0.1', // 服务地址
-        port: 8500, // 端口
-        secure: false, // 是否为https服务器
+        host: '10.199.6.35',
+        port: 8500,
+        secure: false,
       },
       serviceList: [ // 服务发现列表
         {
-          referName: 'consulPlusTest', // 引用名
-          service: 'consul-plus-test', // 服务id
+          referName: 'plutusCore', // 引用名，后续可用 app.services.referName 访问服务
+          service: 'plutus-core', // 服务id
+        },
+        {
+          referName: 'plutusGeneral',
+          service: 'plutus-general',
         },
       ],
-      register: true,// 是否需要注册服务，如果需要注册则 client 不能为空
+      register: false,
       client: {
         name: 'egg-gateway-eos', // 服务每次
         id: 'egg-gateway-eos', // 服务Id，可以与名称一致
@@ -42,7 +46,6 @@ egg-consul-ddz 插件，功能包括：
         },
       },
     },
-}
 ```
 
 插件配置,启动插件
@@ -52,6 +55,11 @@ exports.cors = {
   enable: true,
   package: "egg-consul-ddz"
 };
+```
+
+初始化成功后，获取的consul注册服务会被挂载再application实例化的app对象上，使用方式如下
+```js
+app.consulServices.plutusCore
 ```
 
 服务如果注册成功，会将所有服务信息挂载在 application 实例化后的 app 对象 consulServices 属性上，可以通过如下方式获得

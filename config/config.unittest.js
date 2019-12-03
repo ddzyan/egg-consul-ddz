@@ -3,7 +3,7 @@
 module.exports = () => {
   const config = {
     consulConfig: {
-      findTime: '1m',
+      findTime: '1m', // 发现服务的间隔时间
       server: {
         host: '10.199.6.35',
         port: 8500,
