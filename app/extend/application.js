@@ -119,6 +119,7 @@ module.exports = {
               }
             }
           }
+          this.logger.info('this.consulServices', this.consulServices);
           return checkSuccess;
         }
         throw new RangeError(`未发现状态为 passing 的 ${service} 服务`);
@@ -126,7 +127,7 @@ module.exports = {
       throw new ReferenceError('consul 服务未注册成功');
     } catch (error) {
       if (error instanceof Error) {
-        error.function = 'checkService';
+        error.function = 'findService';
         error.data = serviceOption;
       }
       this.format(error);
