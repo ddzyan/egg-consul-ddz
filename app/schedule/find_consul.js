@@ -17,6 +17,7 @@ module.exports = app => {
         return pre;
       }, findServicePromiseArr);
       await Promise.all(findServicePromiseArr);
+      app.logger.info('app.consulServices', JSON.parse(app.consulServices));
     },
   };
 };

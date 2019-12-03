@@ -119,7 +119,7 @@ module.exports = {
               }
             }
           }
-          this.logger.info('this.consulServices', this.consulServices);
+
           return checkSuccess;
         }
         throw new RangeError(`未发现状态为 passing 的 ${service} 服务`);
