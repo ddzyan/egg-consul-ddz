@@ -26,7 +26,7 @@ module.exports = {
         msg
       );
     }
-    this.logger.error(rest);
+    this.coreLogger.info(rest);
   },
 
   // consul初始化
