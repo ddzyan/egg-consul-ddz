@@ -1,6 +1,6 @@
 {
   "name": "egg-consul-ddz",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "eggPlugin": {
     "name": "consulDdz",
@@ -50,12 +50,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eggjs/egg-consul-ddz.git"
+    "url": "git+https://github.com/ddzyan/egg-consul-ddz"
   },
   "bugs": {
-    "url": "https://github.com/eggjs/egg/issues"
+    "url": "https://github.com/ddzyan/egg-consul-ddz/issues"
   },
-  "homepage": "https://github.com/eggjs/egg-consul-ddz#readme",
-  "author": "",
+  "homepage": "https://github.com/ddzyan/egg-consul-ddz#readme",
+  "author": "ddz",
   "license": "MIT"
 }

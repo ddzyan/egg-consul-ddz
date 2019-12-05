@@ -5,26 +5,17 @@ egg-consul-ddz 插件，功能包括：
 2. 从内存中获取指定名称的服务
 3. 应用关闭时，注销consul上的服务
 
-### 更新记录
-#### 1.0.1
-1. 修改获取 consul 注册服务方法，为只获取状态为通过的服务
-2. 将 consul 相关方法转移到 application 中，在引用时无需再传入 app 对象
-3. 配置定时任务 schedule ，每隔 1m 分钟去 consul 获取，检查和更新健康服务信息 
-
-#### 1.0.2
-1. 解决 format 方法引用错误bug
-
-#### 1.0.3
-1. 修改日志输出中对findService方法输出错误BUG
-2. 每次定时检查consul服务时候，增加获取成功的服务日志输出
-
-#### 1.0.4
-1. 修改获取成的服务日志输出代码，转移到定时器中
-
-#### 1.0.7
-1. 修改日志打印方式为 app.coreLogger
-
 ## 使用
+### 插件启用
+```js
+// plugin.js
+exports.cors = {
+  enable: true,
+  package: "egg-consul-ddz"
+};
+```
+
+### 插件配置
 需要在config.*.js 文件中配置以下参数：
 ```js
  consulConfig: {
@@ -61,22 +52,30 @@ egg-consul-ddz 插件，功能包括：
     },
 ```
 
-插件配置,启动插件
-```js
-// plugin.js
-exports.cors = {
-  enable: true,
-  package: "egg-consul-ddz"
-};
-```
-
-初始化成功后，获取的consul注册服务会被挂载再application实例化的app对象上，使用方式如下
-```js
-app.consulServices.plutusCore
-```
-
-服务如果注册成功，会将所有服务信息挂载在 application 实例化后的 app 对象 consulServices 属性上，可以通过如下方式获得
+服务注册成功，会将所有服务信息挂载在 application 实例化后的 app 对象 consulServices 属性上，可以通过如下方式获得
 ```js
 // 获得服务信息
 app.consulServices[referName] 
 ```
+
+## 更新记录
+### 1.0.1
+1. 修改获取 consul 注册服务方法，为只获取状态为通过的服务
+2. 将 consul 相关方法转移到 application 中，在引用时无需再传入 app 对象
+3. 配置定时任务 schedule ，每隔 1m 分钟去 consul 获取，检查和更新健康服务信息 
+
+### 1.0.2
+1. 解决 format 方法引用错误bug
+
+### 1.0.3
+1. 修改日志输出中对findService方法输出错误BUG
+2. 每次定时检查consul服务时候，增加获取成功的服务日志输出
+
+### 1.0.4
+1. 修改获取成的服务日志输出代码，转移到定时器中
+
+### 1.0.7
+1. 修改日志打印方式为 app.coreLogger
+
+### 1.0.8
+1. 增加说明文档，和BUG提交地址
