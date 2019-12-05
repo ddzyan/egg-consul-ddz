@@ -9,7 +9,7 @@ egg-consul-ddz 插件，功能包括：
 ### 插件启用
 ```js
 // plugin.js
-exports.cors = {
+exports.eggEos = {
   enable: true,
   package: "egg-consul-ddz"
 };
@@ -79,3 +79,6 @@ app.consulServices[referName]
 
 ### 1.0.8
 1. 增加说明文档，和BUG提交地址
+
+### 1.0.9
+1. 更新说明文档
