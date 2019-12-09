@@ -9,6 +9,8 @@ module.exports = app => {
     // 注册本地服务到consul
     await app.registerService();
     app.coreLogger.info('consul register is ready');
+
+    await app.runSchedule('find_consul');
   });
 
   app.beforeClose(async () => {
