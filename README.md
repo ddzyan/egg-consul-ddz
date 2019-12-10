@@ -99,3 +99,6 @@ app.consulServices[referName]
 
 ### 1.1.3
 1. 修改 application.js 中 consul 的方法，避免与其他插件有冲突
+
+### 1.1.4
+1. 转移app.js中启动方法
