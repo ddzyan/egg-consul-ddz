@@ -13,7 +13,7 @@ module.exports = app => {
       const findServicePromiseArr = [];
       const { serviceList } = app.config.consulDdz;
       serviceList.reduce((pre, service) => {
-        pre.push(app.findService(service));
+        pre.push(app.findConsulService(service));
         return pre;
       }, findServicePromiseArr);
       const result = await Promise.all(findServicePromiseArr);

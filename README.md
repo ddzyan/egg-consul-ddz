@@ -91,3 +91,6 @@ app.consulServices[referName]
 
 ### 1.1.2
 1. 获得最新结果后，判断与本地配置是否深度相等，相等则不更新
+
+### 1.1.3
+1. 修改 application.js 中 consul 的方法，避免与其他插件有冲突

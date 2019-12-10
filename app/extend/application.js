@@ -30,7 +30,7 @@ module.exports = {
   },
 
   // consul初始化
-  async  initClient() {
+  async  initConsul() {
     const { consulDdz } = this.config;
     try {
       if (!consulDdz && !consulDdz.server) {
@@ -58,7 +58,7 @@ module.exports = {
   },
 
   // 注册自己的服务
-  async  registerService() {
+  async  registerConsulService() {
     const { consulDdz } = this.config;
     try {
       if (consulDdz && consulDdz.register && consulDdz.client) {
@@ -75,7 +75,7 @@ module.exports = {
   },
 
   // 注册本地注册在consul的服务
-  async  deregisterService() {
+  async  deregisterConsulService() {
     const { config: { consulDdz } } = this;
     try {
       if (consulDdz && consulDdz.register && consulDdz.client) {
@@ -94,7 +94,7 @@ module.exports = {
   },
 
   // 获取，检查和添加consul上健康的服务信息
-  async  findService(serviceOption) {
+  async  findConsulService(serviceOption) {
     const { referName, service } = serviceOption;
     try {
       if (this.consul) {
