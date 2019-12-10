@@ -6,6 +6,11 @@ egg-consul-ddz 插件，功能包括：
 3. 应用关闭时，注销consul上的服务
 
 ## 使用
+### 安装
+```
+yarn add egg-consul-ddz
+```
+
 ### 插件启用
 ```js
 // plugin.js
