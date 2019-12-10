@@ -18,7 +18,7 @@ exports.eggEos = {
 ### 插件配置
 需要在config.*.js 文件中配置以下参数：
 ```js
- consulConfig: {
+ consulDdz: {
       findTime: '1m', // 发现服务的间隔时间
       server: {
         host: '10.199.6.35',
@@ -88,3 +88,6 @@ app.consulServices[referName]
 
 ### 1.1.1
 1. 删除1.1.0代码
+
+### 1.1.2
+1. 获得最新结果后，判断与本地配置是否深度相等，相等则不更新

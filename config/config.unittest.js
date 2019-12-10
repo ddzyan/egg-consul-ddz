@@ -2,7 +2,7 @@
 
 module.exports = () => {
   const config = {
-    consulConfig: {
+    consulDdz: {
       findTime: '1m', // 发现服务的间隔时间
       server: {
         host: '10.199.6.35',

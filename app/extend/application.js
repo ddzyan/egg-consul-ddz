@@ -31,12 +31,12 @@ module.exports = {
 
   // consul初始化
   async  initClient() {
-    const { consulConfig } = this.config;
+    const { consulDdz } = this.config;
     try {
-      if (!consulConfig && !consulConfig.server) {
-        throw new ReferenceError('config.consulConfig is undefind');
+      if (!consulDdz && !consulDdz.server) {
+        throw new ReferenceError('config.consulDdz is undefind');
       }
-      const consul = new Consul(Object.assign(DEFAULT_CONSUL_CONFIG, consulConfig.server));
+      const consul = new Consul(Object.assign(DEFAULT_CONSUL_CONFIG, consulDdz.server));
       const checks = await consul.agent.check.list();
       const services = await consul.agent.service.list();
       if (Object.keys(checks).length <= 0) {
@@ -51,7 +51,7 @@ module.exports = {
     } catch (error) {
       if (error instanceof Error) {
         error.function = 'initClient';
-        error.data = consulConfig;
+        error.data = consulDdz;
       }
       this.format(error);
     }
@@ -59,15 +59,15 @@ module.exports = {
 
   // 注册自己的服务
   async  registerService() {
-    const { consulConfig } = this.config;
+    const { consulDdz } = this.config;
     try {
-      if (consulConfig && consulConfig.register && consulConfig.client) {
-        await this.consul.agent.service.register(consulConfig.client);
+      if (consulDdz && consulDdz.register && consulDdz.client) {
+        await this.consul.agent.service.register(consulDdz.client);
       }
     } catch (error) {
       if (error instanceof Error) {
         error.function = 'registerService';
-        error.data = consulConfig;
+        error.data = consulDdz;
       }
       this.format(error);
     }
@@ -76,18 +76,18 @@ module.exports = {
 
   // 注册本地注册在consul的服务
   async  deregisterService() {
-    const { config: { consulConfig } } = this;
+    const { config: { consulDdz } } = this;
     try {
-      if (consulConfig && consulConfig.register && consulConfig.client) {
+      if (consulDdz && consulDdz.register && consulDdz.client) {
         await Promise.all([
-          this.consul.agent.service.deregister(consulConfig.client.name),
-          this.consul.agent.check.deregister(consulConfig.client.name),
+          this.consul.agent.service.deregister(consulDdz.client.name),
+          this.consul.agent.check.deregister(consulDdz.client.name),
         ]);
       }
     } catch (error) {
       if (error instanceof Error) {
         error.function = 'deregisterService';
-        error.data = consulConfig;
+        error.data = consulDdz;
       }
       this.format(error);
     }
@@ -96,7 +96,6 @@ module.exports = {
   // 获取，检查和添加consul上健康的服务信息
   async  findService(serviceOption) {
     const { referName, service } = serviceOption;
-    let checkSuccess = false;
     try {
       if (this.consul) {
         const result = await this.consul.health.service({
@@ -113,14 +112,12 @@ module.exports = {
                   ip: Address,
                   port: Port,
                 };
-                this.consulServices[referName] = serviceOptin;
-                checkSuccess = true;
-                break;
+                return {
+                  [referName]: serviceOptin,
+                };
               }
             }
           }
-
-          return checkSuccess;
         }
         throw new RangeError(`未发现状态为 passing 的 ${service} 服务`);
       }
