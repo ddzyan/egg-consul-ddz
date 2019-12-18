@@ -40,7 +40,7 @@ exports.eggEos = {
           service: 'plutus-general',
         },
       ],
-      register: false,
+      register: false, // 是否注册自己的服务，如果不注册则无需配置 client 参数
       client: {
         name: 'egg-gateway-eos', // 服务每次
         id: 'egg-gateway-eos', // 服务Id，可以与名称一致
@@ -102,3 +102,6 @@ app.consulServices[referName]
 
 ### 1.1.4
 1. 转移app.js中启动方法
+
+### 1.1.5
+1. 修改consul初始化位置，避免出现例如配置了apollo，导致必要参数未加载的时候，就已经进行了初始化导致失败。

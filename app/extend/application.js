@@ -53,7 +53,7 @@ module.exports = {
         error.function = 'initClient';
         error.data = consulDdz;
       }
-      this.format(error);
+      throw error;
     }
   },
 
@@ -69,7 +69,7 @@ module.exports = {
         error.function = 'registerService';
         error.data = consulDdz;
       }
-      this.format(error);
+      throw error;
     }
 
   },
@@ -89,7 +89,7 @@ module.exports = {
         error.function = 'deregisterService';
         error.data = consulDdz;
       }
-      this.format(error);
+      throw error;
     }
   },
 
@@ -127,7 +127,7 @@ module.exports = {
         error.function = 'findService';
         error.data = serviceOption;
       }
-      this.format(error);
+      throw error;
     }
   },
 };
